@@ -1,0 +1,58 @@
+const products = [
+  {
+    id: 1,
+    slug: "hsk1",
+    level: "HSK1",
+    title: "HSK1 Bộ 1000 từ",
+    pages: "180 trang PDF",
+    price: "39.000đ",
+    image: "/images/products/hsk1.png",
+  },
+  {
+    id: 2,
+    slug: "hsk2",
+    level: "HSK2",
+    title: "HSK2 Bộ 1200 từ",
+    pages: "220 trang PDF",
+    price: "49.000đ",
+    image: "/images/products/hsk2.png",
+  },
+  {
+    id: 3,
+    slug: "hsk3",
+    level: "HSK3",
+    title: "HSK3 Bộ 1500 từ",
+    pages: "300 trang PDF",
+    price: "59.000đ",
+    image: "/images/products/hsk3.png",
+  },
+  {
+    id: 4,
+    slug: "hsk4",
+    level: "HSK4",
+    title: "HSK4 Bộ 2500 từ",
+    pages: "420 trang PDF",
+    price: "79.000đ",
+    image: "/images/products/hsk4.png",
+  },
+  {
+    id: 5,
+    slug: "hsk5",
+    level: "HSK5",
+    title: "HSK5 Bộ 5000 từ",
+    pages: "650 trang PDF",
+    price: "99.000đ",
+    image: "/images/products/hsk5.png",
+  },
+  {
+    id: 6,
+    slug: "hsk6",
+    level: "HSK6",
+    title: "HSK6 Bộ 7000 từ",
+    pages: "850 trang PDF",
+    price: "129.000đ",
+    image: "/images/products/hsk6.png",
+  },
+];
+
+export default products;
