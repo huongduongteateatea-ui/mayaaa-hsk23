@@ -98,13 +98,7 @@ text-green-900
 </h2>
 
 
-<Quiz
-
-questions={lesson10.quiz}
-
-onComplete={()=>setQuizDone(true)}
-
-/>
+<Quiz />
 
 
 </section>
