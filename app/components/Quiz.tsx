@@ -1,194 +1,388 @@
 "use client";
 
 import { useState } from "react";
+import { quizBai10 } from "@/app/data/quizBai10";
 
 
-type Question = {
+export default function Quiz(){
 
-question:string;
+const [current,setCurrent]=useState(0);
 
-options:string[];
+const [selected,setSelected]=useState("");
 
-answer:number;
+const [checked,setChecked]=useState(false);
 
-};
-
-
-
-export default function Quiz({
-
-questions,
-
-onComplete
-
-}:{
-
-questions:Question[];
-
-onComplete?:()=>void;
-
-}){
+const [score,setScore]=useState(0);
 
 
-const [current,setCurrent] = useState(0);
 
-const [selected,setSelected] = useState<number|null>(null);
-
-const [submitted,setSubmitted] = useState(false);
-
-const [score,setScore] = useState(0);
-
-const [finished,setFinished] = useState(false);
+const question = quizBai10[current];
 
 
+function chooseAnswer(answer:string){
+
+if(checked) return;
+
+setSelected(answer);
+
+}
 
 
 
 function checkAnswer(){
 
-
-if(selected===null) return;
-
+if(!selected) return;
 
 
-if(selected===questions[current].answer){
+setChecked(true);
+
+
+if(selected===question.answer){
 
 setScore(score+1);
 
 }
 
-
-setSubmitted(true);
-
-
 }
-
-
 
 
 
 function next(){
 
-
-if(current === questions.length-1){
-
-
-setFinished(true);
-
-
-if(onComplete){
-
-onComplete();
-
-}
-
-
-return;
-
-
-}
-
-
+if(current < quizBai10.length-1){
 
 setCurrent(current+1);
 
-setSelected(null);
+setSelected("");
 
-setSubmitted(false);
+setChecked(false);
 
+}
+
+else{
+
+setCurrent(0);
+
+setSelected("");
+
+setChecked(false);
+
+alert(
+`🎉 Hoàn thành! Bạn đúng ${score}/${quizBai10.length} câu`
+);
+
+}
 
 }
 
 
 
+const progress =
+((current+1)/quizBai10.length)*100;
 
-
-if(finished){
 
 
 return (
 
 <div className="
-rounded-3xl
-bg-green-50
-p-8
-text-center
+min-h-screen
+bg-gradient-to-br
+from-green-50
+via-white
+to-yellow-50
+p-6
 ">
+
+
+<div className="
+max-w-xl
+mx-auto
+">
+
+
+<h1 className="
+text-3xl
+font-bold
+text-green-700
+mb-2
+">
+
+🌸 MAYAAA HSK
+
+</h1>
 
 
 <h2 className="
-text-3xl
-font-bold
-text-green-900
+text-xl
+font-semibold
+mb-6
 ">
 
-🎉 Hoàn thành trắc nghiệm
+📝 Trắc nghiệm từ vựng
 
 </h2>
 
 
 
-<p className="
-mt-4
-text-xl
+<div className="
+bg-white
+rounded-3xl
+shadow-xl
+p-6
 ">
 
-Điểm:
 
-{score}/{questions.length}
+<div className="
+flex
+justify-between
+mb-3
+font-bold
+text-green-700
+">
 
-</p>
+<span>
 
+Câu {current+1}/{quizBai10.length}
+
+</span>
+
+
+<span>
+
+🎯 {score} điểm
+
+</span>
 
 
 </div>
 
-)
 
+
+<div className="
+w-full
+h-3
+bg-gray-200
+rounded-full
+mb-6
+">
+
+
+<div
+
+className="
+h-3
+bg-green-500
+rounded-full
+"
+
+style={{
+width:`${progress}%`
+}}
+
+></div>
+
+
+</div>
+
+
+
+
+<div className="
+bg-green-50
+rounded-2xl
+p-5
+mb-6
+text-lg
+font-medium
+">
+
+{question.question}
+
+</div>
+
+
+
+
+
+<div className="space-y-4">
+
+
+{
+question.options.map((option,index)=>{
+
+
+const letter =
+String.fromCharCode(65+index);
+
+
+
+let style = 
+"bg-white border-gray-200";
+
+
+
+if(!checked && selected===letter){
+
+style =
+"bg-green-100 border-green-500";
 
 }
 
 
 
+if(checked){
+
+if(letter===question.answer){
+
+style =
+"bg-green-100 border-green-500";
+
+}
+
+
+else if(
+letter===selected &&
+selected!==question.answer
+){
+
+style =
+"bg-red-100 border-red-500";
+
+}
+
+}
 
 
 
 return (
 
-<div className="
-rounded-3xl
-bg-white
-p-8
-shadow-md
-border
-border-green-100
-">
+<button
+
+key={letter}
+
+onClick={()=>chooseAnswer(letter)}
+
+className={`
+w-full
+p-4
+rounded-2xl
+border-2
+text-left
+transition
+${style}
+`}
+
+>
+
+
+<span className="font-bold">
+
+{index+1}.
+
+</span>
+
+{" "}
+
+{option}
+
+
+{
+checked &&
+letter===question.answer &&
+<span className="ml-2">
+
+✅
+
+</span>
+}
+
+
+{
+checked &&
+letter===selected &&
+letter!==question.answer &&
+<span className="ml-2">
+
+❌
+
+</span>
+}
 
 
 
-<h3 className="
-text-2xl
-font-bold
-text-green-900
-">
-
-Câu {current+1}/{questions.length}
-
-</h3>
+</button>
 
 
+)
 
+})
+
+}
+
+
+</div>
+
+
+
+
+{
+checked &&
 
 <div className="
 mt-6
-rounded-xl
+rounded-2xl
 bg-gray-50
-p-5
+p-4
 ">
 
-<p className="text-lg font-medium">
 
-{questions[current].question}
+{
+selected===question.answer
+
+?
+
+<p className="
+text-green-600
+font-bold
+">
+
+🎉 Chính xác!
+
+</p>
+
+
+:
+
+<p className="
+text-red-600
+font-bold
+">
+
+💡 Chưa đúng
+
+</p>
+
+}
+
+
+
+<p className="mt-2">
+
+Đáp án đúng:
+
+<b>
+
+{" "}
+{question.answer}.{" "}
+
+{
+question.options[
+question.answer.charCodeAt(0)-65
+]
+
+}
+
+</b>
 
 </p>
 
@@ -196,99 +390,32 @@ p-5
 </div>
 
 
+}
 
 
 
 
-<div className="
-mt-6
-space-y-3
-">
+
+<div className="mt-6">
 
 
 {
 
-questions[current].options.map((option,index)=>(
-
-
-<button
-
-
-key={index}
-
-
-disabled={submitted}
-
-
-onClick={()=>setSelected(index)}
-
-
-className={`
-w-full
-rounded-xl
-border
-p-4
-text-left
-
-${
-
-selected===index
+!checked
 
 ?
-
-"bg-green-100 border-green-900"
-
-:
-
-"bg-white"
-
-}
-
-`}
-
-
->
-
-
-{index+1}. {option}
-
-
-</button>
-
-
-))
-
-
-}
-
-
-</div>
-
-
-
-
-
-
-
-{
-
-!submitted &&
-
 
 <button
 
 onClick={checkAnswer}
 
-disabled={selected===null}
-
 className="
-mt-6
-rounded-full
-bg-green-900
-px-8
-py-3
+w-full
+bg-green-600
 text-white
-disabled:bg-gray-400
+py-3
+rounded-2xl
+font-bold
 "
 
 >
@@ -298,46 +425,24 @@ Kiểm tra
 </button>
 
 
-}
-
-
-
-
-
-
-{
-
-submitted &&
-
+:
 
 <button
 
 onClick={next}
 
 className="
-mt-6
-rounded-full
-bg-green-900
-px-8
-py-3
+w-full
+bg-blue-600
 text-white
+py-3
+rounded-2xl
+font-bold
 "
 
 >
 
-{
-
-current===questions.length-1
-
-?
-
-"Hoàn thành"
-
-:
-
-"Câu tiếp theo"
-
-}
+Câu tiếp theo →
 
 </button>
 
@@ -346,10 +451,16 @@ current===questions.length-1
 
 
 
+</div>
 
 
 </div>
 
+
+</div>
+
+
+</div>
 
 )
 

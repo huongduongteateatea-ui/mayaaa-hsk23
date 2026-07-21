@@ -1,21 +1,19 @@
 import type { Metadata } from "next";
 
+import { AuthProvider } from "./context/AuthContext";
+
 import "./globals.css";
-
-import { CartProvider } from "./context/CartContext";
-
-import FloatingHomeButton from "./components/FloatingHomeButton";
 
 
 
 export const metadata: Metadata = {
 
-  title: "MAYAAA HSK23",
+title: "MAYAAA HSK",
 
-  description:
-    "Tài liệu học tiếng Trung HSK1 - HSK6",
+description: "Luyện tiếng Trung HSK online"
 
 };
+
 
 
 
@@ -31,7 +29,6 @@ children: React.ReactNode;
 }>) {
 
 
-
 return (
 
 <html lang="vi">
@@ -40,17 +37,13 @@ return (
 <body>
 
 
-<CartProvider>
+<AuthProvider>
 
 
 {children}
 
 
-<FloatingHomeButton />
-
-
-</CartProvider>
-
+</AuthProvider>
 
 
 </body>
@@ -59,6 +52,5 @@ return (
 </html>
 
 );
-
 
 }
