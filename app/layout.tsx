@@ -2,47 +2,40 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 import BackHome from "@/app/components/BackHome";
+import { CartProvider } from "@/app/context/CartContext";
 
 
 export const metadata: Metadata = {
-
-title:"MAYAAA HSK",
-
-description:"Luyện thi HSK online"
-
+  title: "MAYAAA HSK",
+  description: "Luyện tiếng Trung HSK online",
 };
 
 
-
 export default function RootLayout({
-
-children,
-
+  children,
 }: Readonly<{
-
-children: React.ReactNode;
-
+  children: React.ReactNode;
 }>) {
 
+  return (
 
-return (
+    <html lang="vi">
 
-<html lang="vi">
+      <body>
 
-<body>
+        <CartProvider>
+
+          <BackHome />
+
+          {children}
+
+        </CartProvider>
 
 
-<BackHome />
+      </body>
 
+    </html>
 
-{children}
-
-
-</body>
-
-</html>
-
-);
-
+  );
 
 }
