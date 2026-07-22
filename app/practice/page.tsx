@@ -20,7 +20,11 @@ title:"Hán Ngữ 3",
 desc:"Trắc nghiệm, dịch câu, luyện nói theo từng bài",
 link:"/practice/hanyu/book3"
 },
-
+{
+title:"HSK4",
+desc:"Luyện tập từ vựng HSK4 theo từng bài",
+link:"/practice/hsk/hsk4"
+},
 {
 title:"HSK 1 - HSK 6",
 desc:"Ôn tập từ vựng theo cấp độ HSK",
