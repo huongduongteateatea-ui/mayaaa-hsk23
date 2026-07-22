@@ -97,12 +97,11 @@ currentItem.answer
 
 if(user===right){
 
-
 setCorrect(true);
 
-
-setScore(prev=>prev+1);
-
+if(!submitted){
+  setScore(prev=>prev+1);
+}
 
 }
 
@@ -251,6 +250,13 @@ text-green-900
 <p className="mt-3 text-gray-600">
 
 Câu {current+1}/{items.length}
+
+</p>
+
+
+<p className="mt-2 text-green-700 font-bold">
+
+✅ Đúng: {score}/{items.length}
 
 </p>
 
