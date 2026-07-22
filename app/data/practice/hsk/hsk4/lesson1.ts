@@ -1272,54 +1272,118 @@ pinyin:"Rúguǒ liǎng ge rén hùxiāng xìnrèn hé lǐjiě, jiù róngyì yǒ
 
 
 speaking:{
-topic:"请介绍你心目中的爱情",
 
-topicVN:"Giới thiệu tình yêu trong suy nghĩ của bạn",
+question:
+"请介绍你心目中的爱情。",
 
 
-questions:[
-{
-chinese:"你觉得爱情中最重要的是什么？",
-pinyin:"Nǐ juéde àiqíng zhōng zuì zhòngyào de shì shénme?",
-meaning:"Bạn nghĩ điều quan trọng nhất trong tình yêu là gì?"
-},
+pinyin:
+"Qǐng jièshào nǐ xīnmù zhōng de àiqíng.",
 
-{
-chinese:"你喜欢什么样的性格的人？为什么？",
-pinyin:"Nǐ xǐhuān shénme yàng de xìnggé de rén? Wèishénme?",
-meaning:"Bạn thích người có tính cách như thế nào? Vì sao?"
-},
 
-{
-chinese:"你认为两个人应该怎样保持好的关系？",
-pinyin:"Nǐ rènwéi liǎng ge rén yīnggāi zěnyàng bǎochí hǎo de guānxi?",
-meaning:"Bạn nghĩ hai người nên duy trì mối quan hệ tốt như thế nào?"
-},
+meaning:
+"Hãy giới thiệu về tình yêu lý tưởng trong suy nghĩ của bạn.",
 
-{
-chinese:"你觉得一个好朋友应该具备什么特点？",
-pinyin:"Nǐ juéde yí ge hǎo péngyou yīnggāi jùbèi shénme tèdiǎn?",
-meaning:"Bạn nghĩ một người bạn tốt nên có những đặc điểm gì?"
-}
+
+
+outline:[
+
+"Ý 1. Giới thiệu: Theo bạn, tình yêu là gì? Điều gì quan trọng nhất trong tình yêu?",
+
+"Ý 2. Đặc điểm: Bạn thích người có tính cách như thế nào? Hai người nên có những điểm chung gì?",
+
+"Ý 3. Quan điểm: Lãng mạn có quan trọng không? Có nên chấp nhận khuyết điểm của nhau không?",
+
+"Ý 4. Kết luận: Một tình yêu tốt có ý nghĩa gì với bạn?"
+
 ],
+
 
 
 keywords:[
+
 "爱情 àiqíng - tình yêu",
-"性格 xìnggé - tính cách",
-"理解 lǐjiě - thấu hiểu",
+
 "信任 xìnrèn - tin tưởng",
+
+"理解 lǐjiě - thấu hiểu",
+
+"尊重 zūnzhòng - tôn trọng",
+
 "关心 guānxīn - quan tâm",
-"陪伴 péibàn - đồng hành"
+
+"陪伴 péibàn - đồng hành",
+
+"包容 bāoróng - bao dung",
+
+"成长 chéngzhǎng - trưởng thành"
+
 ],
 
 
-sample:
-"我觉得爱情中最重要的是互相信任和理解。两个人应该关心对方，接受对方的优点和缺点。好的爱情可以让两个人一起成长。"
+
+answer:{
+
+chinese:
+`
+我心目中的爱情是真诚、理解和陪伴。
+
+我觉得爱情中最重要的是互相信任和理解。
+两个人在一起，不仅要有共同的兴趣，也要学会尊重和关心对方。
+
+我喜欢善良、开朗、有责任心的人，因为这样的人比较容易相处。
+两个人如果有相似的价值观，就可以一起面对生活中的困难。
+
+我认为浪漫在爱情中也很重要，但是浪漫不只是送礼物或者说甜蜜的话，更重要的是在生活中陪伴对方。
+
+当然，每个人都有自己的缺点，所以两个人应该学会接受和包容对方。
+好的爱情可以让两个人一起成长，成为更好的自己。
+`,
+
+
+pinyin:
+`
+Wǒ xīnmù zhōng de àiqíng shì zhēnchéng, lǐjiě hé péibàn.
+
+Wǒ juéde àiqíng zhōng zuì zhòngyào de shì hùxiāng xìnrèn hé lǐjiě.
+Liǎng gè rén zài yìqǐ, bùjǐn yào yǒu gòngtóng de xìngqù, yě yào xuéhuì zūnzhòng hé guānxīn duìfāng.
+
+Wǒ xǐhuān shànliáng, kāilǎng, yǒu zérènxīn de rén,
+yīnwèi zhèyàng de rén bǐjiào róngyì xiāngchǔ.
+
+Wǒ rènwéi làngmàn zài àiqíng zhōng yě hěn zhòngyào,
+dànshì làngmàn bù zhǐ shì sòng lǐwù huòzhě shuō tiánmì de huà,
+gèng zhòngyào de shì zài shēnghuó zhōng péibàn duìfāng.
+
+Dāngrán, měi gè rén dōu yǒu zìjǐ de quēdiǎn,
+suǒyǐ liǎng gè rén yīnggāi xuéhuì jiēshòu hé bāoróng duìfāng.
+Hǎo de àiqíng kěyǐ ràng liǎng gè rén yìqǐ chéngzhǎng.
+`,
+
+
+meaning:
+`
+Tình yêu trong suy nghĩ của tôi là sự chân thành, thấu hiểu và đồng hành.
+
+Tôi nghĩ điều quan trọng nhất trong tình yêu là hai người tin tưởng và thấu hiểu lẫn nhau.
+Hai người ở bên nhau không chỉ cần có sở thích chung mà còn phải học cách tôn trọng và quan tâm đối phương.
+
+Tôi thích những người tốt bụng, vui vẻ và có trách nhiệm vì những người như vậy dễ hòa hợp hơn.
+
+Tôi cho rằng sự lãng mạn cũng rất quan trọng trong tình yêu,
+nhưng lãng mạn không chỉ là tặng quà hay nói những lời ngọt ngào,
+mà quan trọng hơn là ở bên cạnh và quan tâm đối phương trong cuộc sống.
+
+Tất nhiên, ai cũng có khuyết điểm riêng,
+vì vậy hai người cần học cách chấp nhận và bao dung cho nhau.
+Một tình yêu tốt có thể giúp hai người cùng trưởng thành.
+`
 }
 
+}
 
 };
+
 
 
 export default lesson1;

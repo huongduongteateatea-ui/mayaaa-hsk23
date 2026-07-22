@@ -1,6 +1,9 @@
 import Quiz from "@/app/components/Quiz";
 import TranslatePractice from "@/app/components/TranslatePractice";
+import SpeakingPractice from "@/app/components/SpeakingPractice";
+
 import lesson1 from "@/app/data/practice/hsk/hsk4/lesson1";
+
 
 
 export default function Lesson1Page(){
@@ -62,6 +65,7 @@ text-gray-600
 
 
 
+
 <section className="mt-10">
 
 
@@ -89,6 +93,8 @@ questions={lesson1.quiz}
 
 
 </section>
+
+
 
 
 
@@ -124,6 +130,8 @@ items={lesson1.translateB}
 
 
 
+
+
 <section className="mt-16">
 
 
@@ -154,6 +162,9 @@ items={lesson1.translateC}
 
 
 
+
+
+
 <section className="mt-16">
 
 
@@ -173,95 +184,19 @@ mb-5
 </h2>
 
 
-<div
 
-className="
-rounded-3xl
-bg-white
-p-8
-shadow-md
-"
+<SpeakingPractice
 
->
+data={lesson1.speaking}
 
+/>
 
-<h3 className="
-text-xl
-font-bold
-text-green-900
-">
-
-{lesson1.speaking.topic}
-
-</h3>
-
-
-
-<p className="
-mt-4
-text-gray-700
-">
-
-{lesson1.speaking.topicVN}
-
-</p>
-
-
-
-<div className="mt-6 space-y-4">
-
-
-{
-lesson1.speaking.questions.map((q:any,index:number)=>(
-
-<div
-
-key={index}
-
-className="
-rounded-xl
-bg-green-50
-p-4
-"
-
->
-
-<p className="font-bold">
-
-{q.chinese}
-
-</p>
-
-
-<p className="text-gray-600 mt-1">
-
-{q.pinyin}
-
-</p>
-
-
-<p className="mt-2">
-
-{q.meaning}
-
-</p>
-
-
-</div>
-
-))
-
-}
-
-
-</div>
-
-
-
-</div>
 
 
 </section>
+
+
+
 
 
 

@@ -3,204 +3,102 @@
 import { useState } from "react";
 
 
-type SpeakingData = {
+type Props = {
 
-topic:string;
-
-topicVN?:string;
-
-
-question?:{
-
-chinese:string;
-
+data:{
+question:string;
 pinyin:string;
-
 meaning:string;
+outline:string[];
+keywords:string[];
+
+answer:{
+chinese:string;
+pinyin:string;
+meaning:string;
+};
+
+}
 
 };
 
 
 
-vocabulary?:{
-
-chinese:string;
-
-pinyin:string;
-
-meaning:string;
-
-}[];
+export default function SpeakingPractice({data}:Props){
 
 
-
-outline?:{
-
-chinese:string;
-
-meaning:string;
-
-}[];
-
-
-
-sample:string;
-
-samplePinyin:string;
-
-translation:string;
-
-};
-
-
-
-
-
-export default function SpeakingPractice({
-
-data
-
-}:{
-
-data:SpeakingData;
-
-}){
-
-
-const [answer,setAnswer]=useState("");
+const [text,setText]=useState("");
 
 const [submitted,setSubmitted]=useState(false);
+
+const [showKeyword,setShowKeyword]=useState(false);
+
+const [showAnswer,setShowAnswer]=useState(false);
+
+
+
+function submitAnswer(){
+
+if(!text.trim()){
+
+alert("Vui lòng viết câu trả lời trước khi nộp!");
+
+return;
+
+}
+
+setSubmitted(true);
+
+}
 
 
 
 return (
 
-<div className="space-y-10">
-
-
-
-
-
-{/* CHỦ ĐỀ */}
-
-<section className="
+<div className="
 rounded-3xl
 bg-white
 p-8
 shadow-md
-border
-border-green-100
+space-y-8
 ">
+
+
+{/* Câu hỏi */}
+
+<div>
 
 
 <h2 className="
-text-3xl
-font-bold
-text-green-900
-">
-
-🗣 Luyện nói
-
-</h2>
-
-
-
-<p className="
-mt-5
-text-2xl
-font-bold
-">
-
-主题：{data.topic}
-
-</p>
-
-
-
-
-{
-
-data.topicVN &&
-
-<p className="
-mt-2
-text-gray-600
-">
-
-({data.topicVN})
-
-</p>
-
-}
-
-
-</section>
-
-
-
-
-
-
-
-
-
-{/* CÂU HỎI */}
-
-{
-
-data.question &&
-
-
-<section className="
-rounded-3xl
-bg-white
-p-8
-shadow-md
-border
-border-green-100
-">
-
-
-<h3 className="
 text-2xl
 font-bold
 text-green-900
-mb-6
 ">
 
 ❓ Câu hỏi
 
-</h3>
-
-
-
-
-<div className="
-rounded-xl
-bg-gray-50
-p-5
-">
+</h2>
 
 
 <p className="
+mt-4
 text-xl
 font-bold
-text-green-900
 ">
 
-{data.question.chinese}
+{data.question}
 
 </p>
 
 
 
 <p className="
-mt-3
+mt-2
 italic
 text-gray-600
 ">
 
-🔊 {data.question.pinyin}
+{data.pinyin}
 
 </p>
 
@@ -211,7 +109,7 @@ mt-3
 text-gray-700
 ">
 
-🇻🇳 {data.question.meaning}
+{data.meaning}
 
 </p>
 
@@ -219,153 +117,25 @@ text-gray-700
 </div>
 
 
-</section>
-
-
-}
 
 
 
 
 
 
-
-
-
-{/* TỪ VỰNG */}
-
-{
-
-data.vocabulary &&
-
-
-<section className="
-rounded-3xl
-bg-white
-p-8
-shadow-md
-border
-border-green-100
-">
-
-
-<h3 className="
-text-2xl
-font-bold
-text-green-900
-mb-6
-">
-
-📚 Từ vựng sử dụng
-
-</h3>
-
-
-
+{/* Dàn ý */}
 
 <div className="
-grid
-gap-4
-md:grid-cols-2
-">
-
-
-{
-
-data.vocabulary.map((item,index)=>(
-
-
-<div
-
-key={index}
-
-className="
-rounded-xl
-bg-gray-50
+rounded-2xl
+bg-green-50
 p-5
-"
-
->
-
-
-<p className="
-text-xl
-font-bold
-text-green-900
-">
-
-{item.chinese}
-
-</p>
-
-
-
-<p className="
-text-gray-600
-">
-
-{item.pinyin}
-
-</p>
-
-
-
-<p>
-
-{item.meaning}
-
-</p>
-
-
-
-</div>
-
-
-))
-
-
-}
-
-
-</div>
-
-
-
-</section>
-
-
-}
-
-
-
-
-
-
-
-
-
-{/* DÀN Ý */}
-
-{
-
-data.outline &&
-
-
-<section className="
-rounded-3xl
-bg-white
-p-8
-shadow-md
-border
-border-green-100
 ">
 
 
 <h3 className="
-text-2xl
 font-bold
+text-lg
 text-green-900
-mb-6
 ">
 
 📝 Dàn ý mẫu
@@ -373,57 +143,83 @@ mb-6
 </h3>
 
 
-
-
 <div className="
-space-y-4
+mt-4
+space-y-3
 ">
-
 
 {
 
 data.outline.map((item,index)=>(
 
+<p key={index}>
 
-<div
+{item}
 
-key={index}
+</p>
+
+))
+
+}
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+{/* Từ gợi ý */}
+
+
+<div>
+
+
+<button
+
+onClick={()=>setShowKeyword(!showKeyword)}
 
 className="
-rounded-xl
-bg-gray-50
-p-5
+rounded-full
+bg-yellow-500
+px-5
+py-2
+text-white
 "
 
 >
 
+💡 {showKeyword ? "Ẩn từ gợi ý":"Xem từ gợi ý"}
 
-<p className="
-font-bold
-text-lg
+</button>
+
+
+
+
+{
+
+showKeyword &&
+
+<div className="
+mt-4
+rounded-xl
+bg-yellow-50
+p-4
+leading-8
 ">
 
-{index+1}. {item.chinese}
+{
 
-</p>
+data.keywords.join(" | ")
 
-
-
-<p className="
-mt-2
-text-gray-600
-">
-
-→ {item.meaning}
-
-</p>
-
+}
 
 </div>
-
-
-))
-
 
 }
 
@@ -432,102 +228,66 @@ text-gray-600
 
 
 
-</section>
-
-
-}
 
 
 
 
 
+{/* Viết bài */}
 
 
-
-
-{/* NHẬP BÀI NÓI */}
-
-<section className="
-rounded-3xl
-bg-white
-p-8
-shadow-md
-border
-border-green-100
-">
+<div>
 
 
 <h3 className="
-text-2xl
 font-bold
+text-lg
 text-green-900
-mb-5
 ">
 
-🎤 Luyện nói của bạn
+✍️ Viết câu trả lời của bạn
 
 </h3>
 
 
 
-
-<p className="
-mb-5
-text-gray-600
-">
-
-Dựa vào câu hỏi và dàn ý trên, hãy viết bài nói bằng tiếng Trung.
-
-</p>
-
-
-
-
 <textarea
 
-
-value={answer}
-
-
-onChange={(e)=>setAnswer(e.target.value)}
-
+value={text}
 
 disabled={submitted}
 
+onChange={(e)=>setText(e.target.value)}
 
-placeholder="Nhập bài nói của bạn..."
-
+placeholder="
+Viết thành một đoạn văn hoàn chỉnh bằng tiếng Trung...
+"
 
 className="
+mt-4
+h-52
 w-full
-min-h-[200px]
 rounded-xl
 border
-p-5
-text-lg
-focus:outline-none
-focus:ring-2
-focus:ring-green-700
-disabled:bg-gray-100
+p-4
+leading-7
 "
 
 />
 
 
 
-
-
 <button
 
-onClick={()=>setSubmitted(true)}
+onClick={submitAnswer}
 
-disabled={!answer.trim() || submitted}
+disabled={submitted}
 
 className="
-mt-5
+mt-4
 rounded-full
 bg-green-900
-px-8
+px-6
 py-3
 text-white
 disabled:bg-gray-400
@@ -541,20 +301,18 @@ submitted
 
 ?
 
-"Đã nộp"
+"✅ Đã nộp bài"
 
 :
 
-"Nộp bài"
+"📤 Nộp bài"
 
 }
 
 </button>
 
 
-
-</section>
-
+</div>
 
 
 
@@ -563,156 +321,145 @@ submitted
 
 
 
-{/* BÀI MẪU SAU KHI NỘP */}
+
+
+{/* Bài mẫu */}
+
 
 {
 
 submitted &&
 
 
-<>
-
-
-<section className="
-rounded-3xl
-bg-white
-p-8
-shadow-md
-border
-border-green-100
+<div className="
+rounded-2xl
+bg-blue-50
+p-6
 ">
 
 
-<h3 className="
-text-2xl
-font-bold
-text-green-900
-mb-5
-">
+<button
 
-📖 Bài mẫu tham khảo
+onClick={()=>setShowAnswer(!showAnswer)}
 
-</h3>
+className="
+rounded-full
+bg-blue-600
+px-5
+py-2
+text-white
+"
 
+>
+
+📖 {showAnswer ? "Ẩn bài mẫu":"Xem bài mẫu tham khảo"}
+
+</button>
+
+
+
+
+
+{
+
+showAnswer &&
 
 
 <div className="
-rounded-xl
-bg-gray-50
-p-6
-leading-relaxed
-whitespace-pre-line
+mt-6
+space-y-5
+leading-8
 ">
 
-{data.sample}
+
+<div>
+
+<h4 className="
+font-bold
+text-green-900
+">
+
+中文:
+
+</h4>
+
+
+<p className="whitespace-pre-line">
+
+{data.answer.chinese}
+
+</p>
 
 </div>
 
 
-</section>
 
 
 
+<div>
 
-
-
-
-<section className="
-rounded-3xl
-bg-white
-p-8
-shadow-md
-border
-border-green-100
-">
-
-
-<h3 className="
-text-2xl
+<h4 className="
 font-bold
 text-green-900
-mb-5
 ">
 
-🔤 Pinyin
+Pinyin:
 
-</h3>
+</h4>
 
 
+<p className="whitespace-pre-line">
 
-<div className="
-rounded-xl
-bg-gray-50
-p-6
-italic
-leading-relaxed
-whitespace-pre-line
-">
+{data.answer.pinyin}
 
-{data.samplePinyin}
+</p>
 
 </div>
 
 
-</section>
 
 
 
 
+<div>
 
-
-
-<section className="
-rounded-3xl
-bg-white
-p-8
-shadow-md
-border
-border-green-100
-">
-
-
-<h3 className="
-text-2xl
+<h4 className="
 font-bold
 text-green-900
-mb-5
 ">
 
-🇻🇳 Dịch nghĩa
+Nghĩa tiếng Việt:
 
-</h3>
+</h4>
 
 
+<p className="whitespace-pre-line">
 
-<div className="
-rounded-xl
-bg-gray-50
-p-6
-leading-relaxed
-whitespace-pre-line
-">
+{data.answer.meaning}
 
-{data.translation}
+</p>
+
 
 </div>
 
 
-</section>
+
+</div>
 
 
-</>
+}
+
+
+</div>
 
 
 }
 
 
 
-
-
 </div>
 
+);
 
-)
 
 }
