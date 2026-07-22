@@ -210,9 +210,11 @@ text-green-900
 </h2>
 
 
+{/*
 <SpeakingPractice
 data={lesson10.speaking[0]}
 />
+*/}
 
 
 </section>
