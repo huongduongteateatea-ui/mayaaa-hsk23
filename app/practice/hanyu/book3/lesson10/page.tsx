@@ -99,7 +99,7 @@ text-green-900
  onComplete={()=>setQuizDone(true)}
 />
 {
-lesson10.reading && (
+lesson10.reading?.length > 0 && (
 
 <div className="mt-10">
 
@@ -146,9 +146,7 @@ text-green-900
 
 
 <TranslatePractice
-
 items={lesson10.translate}
-
 />
 
 
