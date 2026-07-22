@@ -5,17 +5,11 @@ import { useState } from "react";
 
 
 type Question = {
-
-id?:number;
-
-passage?:string;
-
-question:string;
-
-options:string[];
-
-answer:string | number;
-
+ id?: number;
+ passage?: string;
+ question:string;
+ options:string[];
+ answer:number;
 };
 
 
@@ -77,10 +71,8 @@ setChecked(true);
 if(
 selected === String.fromCharCode(65 + Number(q.answer))
 ){
-setScore(score+1);
-}{
 
-setScore(score+1);
+setScore(prev => prev + 1);
 
 }
 
