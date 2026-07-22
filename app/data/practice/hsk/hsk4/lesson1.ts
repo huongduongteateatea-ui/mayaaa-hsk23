@@ -1272,30 +1272,50 @@ pinyin:"Rúguǒ liǎng ge rén hùxiāng xìnrèn hé lǐjiě, jiù róngyì yǒ
 
 
 speaking:{
-
-
 topic:"请介绍你心目中的爱情",
 
 topicVN:"Giới thiệu tình yêu trong suy nghĩ của bạn",
 
 
-question:{
-chinese:"",
-pinyin:"",
-meaning:""
+questions:[
+{
+chinese:"你觉得爱情中最重要的是什么？",
+pinyin:"Nǐ juéde àiqíng zhōng zuì zhòngyào de shì shénme?",
+meaning:"Bạn nghĩ điều quan trọng nhất trong tình yêu là gì?"
 },
 
+{
+chinese:"你喜欢什么样的性格的人？为什么？",
+pinyin:"Nǐ xǐhuān shénme yàng de xìnggé de rén? Wèishénme?",
+meaning:"Bạn thích người có tính cách như thế nào? Vì sao?"
+},
 
-vocabulary:[],
+{
+chinese:"你认为两个人应该怎样保持好的关系？",
+pinyin:"Nǐ rènwéi liǎng ge rén yīnggāi zěnyàng bǎochí hǎo de guānxi?",
+meaning:"Bạn nghĩ hai người nên duy trì mối quan hệ tốt như thế nào?"
+},
+
+{
+chinese:"你觉得一个好朋友应该具备什么特点？",
+pinyin:"Nǐ juéde yí ge hǎo péngyou yīnggāi jùbèi shénme tèdiǎn?",
+meaning:"Bạn nghĩ một người bạn tốt nên có những đặc điểm gì?"
+}
+],
 
 
-outline:[],
+keywords:[
+"爱情 àiqíng - tình yêu",
+"性格 xìnggé - tính cách",
+"理解 lǐjiě - thấu hiểu",
+"信任 xìnrèn - tin tưởng",
+"关心 guānxīn - quan tâm",
+"陪伴 péibàn - đồng hành"
+],
 
 
-sample:"",
-samplePinyin:"",
-translation:""
-
+sample:
+"我觉得爱情中最重要的是互相信任和理解。两个人应该关心对方，接受对方的优点和缺点。好的爱情可以让两个人一起成长。"
 }
 
 
