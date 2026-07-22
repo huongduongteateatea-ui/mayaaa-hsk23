@@ -1,16 +1,14 @@
 import type { Metadata } from "next";
-
-import { AuthProvider } from "./context/AuthContext";
-import { CartProvider } from "./context/CartContext";
-
 import "./globals.css";
+
+import BackHome from "@/app/components/BackHome";
 
 
 export const metadata: Metadata = {
 
-  title: "MAYAAA HSK",
+title:"MAYAAA HSK",
 
-  description: "Luyện tiếng Trung HSK online"
+description:"Luyện thi HSK online"
 
 };
 
@@ -18,39 +16,33 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
 
-  children,
+children,
 
 }: Readonly<{
 
-  children: React.ReactNode;
+children: React.ReactNode;
 
 }>) {
 
 
-  return (
+return (
 
-    <html lang="vi">
+<html lang="vi">
 
-
-      <body>
-
-
-        <AuthProvider>
-
-          <CartProvider>
-
-            {children}
-
-          </CartProvider>
-
-        </AuthProvider>
+<body>
 
 
-      </body>
+<BackHome />
 
 
-    </html>
+{children}
 
-  );
+
+</body>
+
+</html>
+
+);
+
 
 }

@@ -1,8 +1,7 @@
 "use client";
 
-
 import Link from "next/link";
-
+import Image from "next/image";
 
 
 export default function Header(){
@@ -11,131 +10,106 @@ export default function Header(){
 return (
 
 <header
-
 className="
-border-b
-border-[#ddc8a8]
+w-full
 bg-white
+shadow-sm
 "
-
 >
 
 
 <div
-
 className="
+max-w-6xl
 mx-auto
 flex
-max-w-7xl
 items-center
 justify-between
 px-6
-py-5
+py-4
 "
-
 >
 
 
-
+{/* Logo */}
 
 <Link
-
 href="/"
-
-className="
-text-2xl
-font-bold
-text-green-900
-"
-
->
-
-MAYAAA HSK23
-
-</Link>
-
-
-
-
-
-
-<nav
-
 className="
 flex
 items-center
-gap-8
+gap-3
+font-bold
+text-green-800
+text-xl
+"
+>
+
+
+<Image
+
+src="/images/pig.png"
+
+alt="MAYAAA HSK"
+
+width={45}
+
+height={45}
+
+/>
+
+
+<span>
+MAYAAA HSK
+</span>
+
+
+</Link>
+
+
+
+
+
+{/* Menu */}
+
+<nav
+className="
+flex
+gap-6
 text-gray-700
 "
-
 >
 
 
 <Link
-
 href="/"
-
 className="
-hover:text-green-900
+hover:text-green-700
 "
-
 >
-
 Trang chủ
-
 </Link>
 
 
 
-
 <Link
-
-href="/roadmap/hsk1"
-
-className="
-hover:text-green-900
-"
-
->
-
-Lộ trình học
-
-</Link>
-
-
-
-
-
-<Link
-
 href="/practice"
-
 className="
-hover:text-green-900
+hover:text-green-700
 "
-
 >
-
-Luyện tập từ vựng
-
+Luyện tập
 </Link>
 
 
 
-
-
 <Link
-
-href="/shop"
-
+href="/products"
 className="
-hover:text-green-900
+hover:text-green-700
 "
-
 >
-
-Tài liệu
-
+Sản phẩm
 </Link>
 
 
@@ -144,14 +118,10 @@ Tài liệu
 
 
 
-
-
 </div>
 
 
-
 </header>
-
 
 );
 
