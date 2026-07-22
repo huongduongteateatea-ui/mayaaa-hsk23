@@ -98,7 +98,25 @@ text-green-900
  questions={lesson10.quiz}
  onComplete={()=>setQuizDone(true)}
 />
+{
+lesson10.reading && (
 
+<div className="mt-10">
+
+<h2 className="text-2xl font-bold text-green-700 mb-4">
+📖 Đọc hiểu
+</h2>
+
+
+<Quiz
+questions={lesson10.reading}
+onComplete={()=>{}}
+/>
+
+</div>
+
+)
+}
 
 </section>
 
@@ -195,9 +213,7 @@ text-green-900
 
 
 <SpeakingPractice
-
-data={lesson10.speaking}
-
+data={lesson10.speaking[0]}
 />
 
 
