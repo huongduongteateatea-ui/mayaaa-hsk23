@@ -1,10 +1,40 @@
 "use client";
 
 import { useState } from "react";
-import { quizBai10 } from "@/app/data/quizBai10";
 
 
-export default function Quiz(){
+
+type Question = {
+
+id?:number;
+
+passage?:string;
+
+question:string;
+
+options:string[];
+
+answer:string | number;
+
+};
+
+
+
+type Props = {
+
+questions:Question[];
+
+onComplete?:()=>void;
+
+};
+
+
+
+export default function Quiz({
+questions,
+onComplete
+}:Props){
+
 
 const [current,setCurrent]=useState(0);
 
@@ -16,8 +46,15 @@ const [score,setScore]=useState(0);
 
 
 
-const question = quizBai10[current];
+const q = questions[current];
 
+function getCorrectAnswer(){
+  if(typeof q.answer === "number"){
+    return String.fromCharCode(65 + q.answer);
+  }
+
+  return q.answer;
+}
 
 function chooseAnswer(answer:string){
 
@@ -37,7 +74,11 @@ if(!selected) return;
 setChecked(true);
 
 
-if(selected===question.answer){
+if(
+selected === String.fromCharCode(65 + Number(q.answer))
+){
+setScore(score+1);
+}{
 
 setScore(score+1);
 
@@ -47,9 +88,9 @@ setScore(score+1);
 
 
 
-function next(){
+function nextQuestion(){
 
-if(current < quizBai10.length-1){
+if(current < questions.length-1){
 
 setCurrent(current+1);
 
@@ -61,14 +102,14 @@ setChecked(false);
 
 else{
 
-setCurrent(0);
+if(onComplete){
 
-setSelected("");
+onComplete();
 
-setChecked(false);
+}
 
 alert(
-`🎉 Hoàn thành! Bạn đúng ${score}/${quizBai10.length} câu`
+`🎉 Hoàn thành! Bạn đúng ${score}/${questions.length} câu`
 );
 
 }
@@ -77,8 +118,24 @@ alert(
 
 
 
+function previous(){
+
+if(current>0){
+
+setCurrent(current-1);
+
+setSelected("");
+
+setChecked(false);
+
+}
+
+}
+
+
+
 const progress =
-((current+1)/quizBai10.length)*100;
+((current+1)/questions.length)*100;
 
 
 
@@ -88,23 +145,22 @@ return (
 min-h-screen
 bg-gradient-to-br
 from-green-50
-via-white
 to-yellow-50
-p-6
+p-4
 ">
 
 
 <div className="
-max-w-xl
+max-w-lg
 mx-auto
 ">
 
 
 <h1 className="
-text-3xl
+text-2xl
 font-bold
 text-green-700
-mb-2
+mb-4
 ">
 
 🌸 MAYAAA HSK
@@ -112,44 +168,34 @@ mb-2
 </h1>
 
 
-<h2 className="
-text-xl
-font-semibold
-mb-6
-">
-
-📝 Trắc nghiệm từ vựng
-
-</h2>
-
-
 
 <div className="
 bg-white
-rounded-3xl
-shadow-xl
-p-6
+rounded-2xl
+shadow-md
+p-4
 ">
 
 
 <div className="
 flex
 justify-between
-mb-3
-font-bold
-text-green-700
+text-sm
+font-semibold
+mb-2
 ">
+
 
 <span>
 
-Câu {current+1}/{quizBai10.length}
+Câu {current+1}/{questions.length}
 
 </span>
 
 
 <span>
 
-🎯 {score} điểm
+🎯 {score}
 
 </span>
 
@@ -158,19 +204,19 @@ Câu {current+1}/{quizBai10.length}
 
 
 
+
 <div className="
-w-full
-h-3
+h-2
 bg-gray-200
 rounded-full
-mb-6
+mb-5
 ">
 
 
 <div
 
 className="
-h-3
+h-2
 bg-green-500
 rounded-full
 "
@@ -187,16 +233,50 @@ width:`${progress}%`
 
 
 
+
+{
+q.passage &&
+
 <div className="
-bg-green-50
-rounded-2xl
-p-5
-mb-6
-text-lg
-font-medium
+bg-yellow-50
+border
+rounded-xl
+p-3
+mb-4
+text-sm
+leading-6
 ">
 
-{question.question}
+
+<div className="font-bold mb-2">
+
+📖 Đọc đoạn văn
+
+</div>
+
+
+{q.passage}
+
+
+</div>
+
+}
+
+
+
+
+
+<div className="
+bg-green-50
+rounded-xl
+p-4
+mb-4
+font-semibold
+">
+
+
+{q.question}
+
 
 </div>
 
@@ -204,11 +284,13 @@ font-medium
 
 
 
-<div className="space-y-4">
+<div className="
+space-y-3
+">
 
 
 {
-question.options.map((option,index)=>{
+q.options.map((option,index)=>{
 
 
 const letter =
@@ -216,15 +298,15 @@ String.fromCharCode(65+index);
 
 
 
-let style = 
-"bg-white border-gray-200";
+let color =
+"border-gray-200";
 
 
 
 if(!checked && selected===letter){
 
-style =
-"bg-green-100 border-green-500";
+color=
+"border-green-500 bg-green-50";
 
 }
 
@@ -232,21 +314,27 @@ style =
 
 if(checked){
 
-if(letter===question.answer){
+if(
+letter === String.fromCharCode(65 + Number(q.answer))
+){
 
-style =
-"bg-green-100 border-green-500";
+color=
+"border-green-500 bg-green-100";
 
 }
 
+if(
+  letter === selected &&
+  selected !== (
+    typeof q.answer === "number"
+      ? String.fromCharCode(65 + q.answer)
+      : q.answer
+  )
+)
+{
 
-else if(
-letter===selected &&
-selected!==question.answer
-){
-
-style =
-"bg-red-100 border-red-500";
+color=
+"border-red-500 bg-red-100";
 
 }
 
@@ -264,16 +352,15 @@ onClick={()=>chooseAnswer(letter)}
 
 className={`
 w-full
-p-4
-rounded-2xl
-border-2
 text-left
-transition
-${style}
+p-3
+rounded-xl
+border-2
+text-sm
+${color}
 `}
 
 >
-
 
 <span className="font-bold">
 
@@ -286,34 +373,10 @@ ${style}
 {option}
 
 
-{
-checked &&
-letter===question.answer &&
-<span className="ml-2">
-
-✅
-
-</span>
-}
-
-
-{
-checked &&
-letter===selected &&
-letter!==question.answer &&
-<span className="ml-2">
-
-❌
-
-</span>
-}
-
-
-
 </button>
 
-
 )
+
 
 })
 
@@ -325,45 +388,43 @@ letter!==question.answer &&
 
 
 
+
 {
 checked &&
 
 <div className="
-mt-6
-rounded-2xl
+mt-4
 bg-gray-50
-p-4
+rounded-xl
+p-3
+text-sm
 ">
 
 
 {
-selected===question.answer
+selected === (
+  typeof q.answer === "number"
+    ? String.fromCharCode(65 + q.answer)
+    : q.answer
+)
 
 ?
 
-<p className="
-text-green-600
-font-bold
-">
+<p className="text-green-600 font-bold">
 
-🎉 Chính xác!
+✅ Chính xác!
 
 </p>
 
-
 :
 
-<p className="
-text-red-600
-font-bold
-">
+<p className="text-red-600 font-bold">
 
-💡 Chưa đúng
+❌ Sai rồi!
 
 </p>
 
 }
-
 
 
 <p className="mt-2">
@@ -373,13 +434,12 @@ font-bold
 <b>
 
 {" "}
-{question.answer}.{" "}
-
 {
-question.options[
-question.answer.charCodeAt(0)-65
-]
-
+String.fromCharCode(65 + Number(q.answer))
+}
+.
+{
+q.options[Number(q.answer)]
 }
 
 </b>
@@ -389,14 +449,41 @@ question.answer.charCodeAt(0)-65
 
 </div>
 
-
 }
 
 
 
 
 
-<div className="mt-6">
+<div className="
+flex
+justify-between
+mt-5
+">
+
+
+<button
+
+onClick={previous}
+
+disabled={current===0}
+
+className="
+px-4
+py-2
+border
+rounded-lg
+text-sm
+"
+
+>
+
+← Trước
+
+</button>
+
+
+
 
 
 {
@@ -410,12 +497,12 @@ question.answer.charCodeAt(0)-65
 onClick={checkAnswer}
 
 className="
-w-full
+px-5
+py-2
 bg-green-600
 text-white
-py-3
-rounded-2xl
-font-bold
+rounded-lg
+text-sm
 "
 
 >
@@ -429,20 +516,20 @@ Kiểm tra
 
 <button
 
-onClick={next}
+onClick={nextQuestion}
 
 className="
-w-full
+px-5
+py-2
 bg-blue-600
 text-white
-py-3
-rounded-2xl
-font-bold
+rounded-lg
+text-sm
 "
 
 >
 
-Câu tiếp theo →
+Tiếp →
 
 </button>
 
@@ -452,6 +539,7 @@ Câu tiếp theo →
 
 
 </div>
+
 
 
 </div>

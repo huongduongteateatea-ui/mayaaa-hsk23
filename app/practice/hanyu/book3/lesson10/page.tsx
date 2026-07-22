@@ -1,20 +1,16 @@
 "use client";
+
 import { useState } from "react";
 
 import StudentProfile from "@/app/components/StudentProfile";
+import Quiz from "@/app/components/Quiz";
+import TranslatePractice from "@/app/components/TranslatePractice";
+import SpeakingPractice from "@/app/components/SpeakingPractice";
 
 import lesson10 from "@/app/data/practice/hanyu/book3/lesson10";
 
-import Quiz from "@/app/components/Quiz";
-
-import TranslatePractice from "@/app/components/TranslatePractice";
-
-import SpeakingPractice from "@/app/components/SpeakingPractice";
-
-
 
 export default function Lesson10Page(){
-
 
 const [started,setStarted] = useState(false);
 
@@ -98,7 +94,10 @@ text-green-900
 </h2>
 
 
-<Quiz />
+<Quiz
+ questions={lesson10.quiz}
+ onComplete={()=>setQuizDone(true)}
+/>
 
 
 </section>
